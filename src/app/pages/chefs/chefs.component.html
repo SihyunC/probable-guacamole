@@ -1,0 +1,100 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Chefs List</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Chef Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">approve/reject</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let chef of chefsList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                  <th>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{chef.id}}. </span>
+                    </div>
+                  </th>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                        <img alt="Image" [src]=getSantizeUrl(chef.imagePath) />
+                      </a>
+                      <div class="media-body">
+                        <span class="text-sm">{{chef.name}}. </span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{chef.email}}
+                  </td>
+                  
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2"> {{chef.location_lat}} </span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf=" (chef.adminVerficaton) ; else elsePending">
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-success"></i> approved
+                      </span>
+                    </div>
+                    <ng-template #elsePending>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i> pending
+                      </span>
+                    </ng-template>
+                    </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{chef.createdAt | date: 'dd/MM/yyyy' }}</span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">
+                        <button (click)="acceptChef(chef.id)" type="button" class="btn btn-success btn-circle btn-md"><i class="fa fa-check"></i></button> 
+                        <button (click)="rejectChef(chef.id)" type="button" class="btn btn-danger btn-circle btn-md"><i class="fa fa-times"></i></button>
+                      </span>
+                      <a href="/chefs/{{chef.id}}" type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <!-- end of first row -->
+              </tbody>
+            </table>
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <ngb-pagination [collectionSize]="chefsList.length" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                </ul>
+              </nav>
+            </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,93 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Plates Category List</h3>
+            <div class="mb-0 text-right">
+              <button routerLink="/plates-category-create" class="btn btn-icon btn-sm btn-outline-primary" type="button">
+                <span class="btn-inner--icon"><i class="fas fa-plus-circle"></i></span>
+                <span class="btn-inner--text">Create</span>
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">userId</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Updated At</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let plate of platesList ">
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                        <img alt="Image placeholder" src="{{plate.url}}">
+                      </a>
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">{{plate.id}}</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{plate.name}}
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2"> {{plate.description}} </span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2"> {{plate.createdAt | date: 'shortDate' }} </span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{plate.updatedAt | date: 'shortDate' }}</span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <a href="/plates-category/{{plate.id}}" type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <!-- end of first row -->
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <ngb-pagination [collectionSize]="platesList.length" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

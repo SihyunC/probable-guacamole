@@ -1,0 +1,53 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/chef.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Add Plates Category</h3>
+              </div>
+            </div>
+          </div>
+          <div  class="card-body">
+            <form>
+              <h6 class="heading-small text-muted mb-4">Plate Category Details</h6>
+              <div class="pl-lg-4">
+                <div *ngIf="!submitted" class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="name">Name</label>
+                      <input type="text" id="name" class="form-control form-control-alternative" placeholder="name" required
+                      [(ngModel)]="Plates.name" name="name"/>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="description">Description</label>
+                      <input type="text" id="description" class="form-control form-control-alternative" placeholder="description" required
+                      [(ngModel)]="Plates.description" name="description"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="category_image">Image Url</label>
+                      <input type="text" id="category_image" class="form-control form-control-alternative" placeholder="category_image" required
+                      [(ngModel)]="Plates.category_image" name="category_image"/>
+                    </div>
+                  </div>
+                </div>
+                <button (click)="createPlateCategory()" class="btn btn-outline-primary">Submit</button>
+              </div>
+              <div *ngIf="submitted" class="text-end">
+                <h4>Plate Category successfully Created!</h4>
+                <button class="btn btn-outline-info" (click)="newPlatesCategory()">Create New</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

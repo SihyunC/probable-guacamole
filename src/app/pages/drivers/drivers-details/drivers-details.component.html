@@ -1,0 +1,185 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/drivers.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">My account</h3>
+              </div>
+              <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="currentDriver" class="card-body">
+            <form>
+              <h6 class="heading-small text-muted mb-4">User Details</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Name</label>
+                      <input type="text" id="name" class="form-control form-control-alternative" placeholder="name" value="{{currentDriver.name}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Email address</label>
+                      <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="email" value="{{currentDriver.email}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">userID</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="userId" value="{{currentDriver.id}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">created On</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="created on" value="{{currentDriver.createdAt | date: 'long'}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative">
+                        <input name="password" #pass class="form-control" placeholder="Password" type="password" value="{{currentDriver.password}}" >
+                        <div class="input-group-append">
+                          <span class="input-group-text"><button class="btn btn-sm btn-outline-info" (click)="pass.type=pass.type=='password'?'text':'password'"><i class="far fa-eye"></i></button></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <hr class="my-4" />
+              <!-- Contact Information -->
+              <h6 class="heading-small text-muted mb-4">Contact information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Phone No</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="Phone No" value="{{currentDriver.phone_no}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Country Code</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="country code" value="{{currentDriver.country_code}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-country">Restaurant Name</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="Restaurant name" value="{{currentDriver.restaurant_name}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-country">Location latitude</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="{{currentDriver.location_lat}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-country">Location longitude</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="{{currentDriver.location_lon}}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <!-- Verification Status -->
+              <h6 class="heading-small text-muted mb-4">Verification Status</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Admin verification</label>
+                      <input id="input-text" class="form-control form-control-alternative" placeholder="admin verification" value="{{currentDriver.adminVerficaton}}" type="text">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">User Status</label>
+                      <input id="input-text" class="form-control form-control-alternative" placeholder="user status" value="{{currentDriver.status}}" type="text">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Order Status</label>
+                      <input id="input-text" class="form-control form-control-alternative" placeholder="order status" value="{{currentDriver.order_flag}}" type="text">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Email Verification</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="email verification" value="{{currentDriver.verification_email_status}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Email token</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="email token" value="{{currentDriver.verification_email_token}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Phone Verification</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="phone verification" value="{{currentDriver.verification_phone_status}}" >
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Phone token</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="phone verification token" value="{{currentDriver.verification_phone_token}}" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Other Information -->
+              <h6 class="heading-small text-muted mb-4">More information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Stripe Id</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="Stripe id" value="{{currentDriver.stripe_id}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">User Ip Address</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="User Ip" value="{{currentDriver.user_ip}}" type="text">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">User Type</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="user type" value="{{currentDriver.user_type}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-text">Zoom Id</label>
+                      <input type="text" id="input-text" class="form-control form-control-alternative" placeholder="zoom id" value="{{currentDriver.zoom_id}}">
+                    </div>
+                  </div>  
+                </div>
+                <span><i>Last updated on: {{currentDriver.updatedAt | date: 'medium' }}</i></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  

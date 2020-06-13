@@ -1,0 +1,100 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Drivers List</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Driver Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">approve/reject</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let driver of driversList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+                  <th>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2 text-sm">{{driver.id}}. </span>
+                    </div>
+                  </th>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                        <img alt="Image" [src]=getSantizeUrl(driver.imagePath) />
+                      </a>
+                      <div class="media-body">
+                        <span class="text-sm">{{driver.name}}. </span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{driver.email}}
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{driver.location_lat}}</span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div *ngIf=" (driver.adminVerficaton) ; else elsePending">
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-success"></i> approved
+                      </span>
+                    </div>
+                    <ng-template #elsePending>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i> pending
+                      </span>
+                    </ng-template>
+                    </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{driver.createdAt | date: 'shortDate' }}</span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">
+                        <button (click)="acceptDriver(driver.id)" type="button" class="btn btn-success btn-circle btn-md"><i class="fa fa-check"></i></button> 
+                        <button (click)="rejectDriver(driver.id)" type="button" class="btn btn-danger btn-circle btn-md"><i class="fa fa-times"></i></button>
+                        <a href="/drivers/{{driver.id}}" type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <!-- end of first row -->
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <ngb-pagination [collectionSize]="driversList.length" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

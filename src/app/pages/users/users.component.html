@@ -1,0 +1,85 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Users List</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">UserId</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of usersList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+                  <th>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{user.id}}. </span>
+                    </div>
+                  </th>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                        <img alt="Image" [src]=getSantizeUrl(user.imagePath) />
+                      </a>
+                      <div class="media-body">
+                        <span class="text-sm">{{user.name}} </span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{user.email}}
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{user.location_lat}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-warning"></i> {{user.adminVerficaton ? 'approved' : 'pending'}}
+                    </span>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{user.createdAt | date: 'dd/MM/yyyy' }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <a href="/users/{{user.id}}" type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <!-- end of first row -->
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <ngb-pagination [collectionSize]="usersList.length" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,85 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Chefs List</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">userID</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Documents</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let chef of chefDocsList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                  <th>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{chef.id}}. </span>
+                    </div>
+                  </th>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                        <img alt="Image" [src]=getSantizeUrl(chef.ProfilePhoto) />
+                      </a>
+                      <div class="media-body">
+                        <span class="text-sm">{{chef.user.name}}. </span>
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{chef.user.email}}
+                  </td>
+                  
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2"> {{chef.user.id}} </span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">{{chef.createdAt | date: 'dd/MM/yyyy' }}</span>
+                      <div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="mr-2">
+                      </span>
+                      <!-- <button type="button" class="btn btn-outline-primary btn-sm">view</button> -->
+                      <a href="/chefs/docs/{{chef.user.id}}" type="button" class="btn btn-outline-primary btn-sm">view</a>
+                    </div>
+                  </td>
+                </tr>
+                <!-- end of first row -->
+              </tbody>
+            </table>
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <ngb-pagination [collectionSize]="chefDocsList.length" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                </ul>
+              </nav>
+            </div>
+      </div>
+    </div>
+  </div>
+  
